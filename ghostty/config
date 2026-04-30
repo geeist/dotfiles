@@ -1,0 +1,62 @@
+# Font Configuration - Using Ghostty's embedded JetBrains Mono
+font-family = "JetBrains Mono Nerd Font"
+font-size = 14
+# font-style configurations removed - they should either be specific style names or false to disable
+# The values "normal", "bold", "italic", "bold-italic" are not valid according to documentation
+font-feature = "liga=1,calt=1,ss01=1,ss02=1,ss19=1"
+
+# Theme and Colors - Using Ghostty's built-in theme system
+theme = Catppuccin Frappe
+background-opacity = 0.9
+background-blur = 20
+unfocused-split-opacity = 0.7
+
+# Window Configuration
+window-decoration = true
+window-theme = auto
+window-padding-x = 24
+window-padding-y = 24
+window-save-state = always
+window-new-tab-position = end
+
+# Terminal Features
+scrollback-limit = 100000
+confirm-close-surface = false
+quit-after-last-window-closed = false
+
+# Shell Integration - Enhanced for development workflows
+# Use automatic detection but specify features we want
+shell-integration = detect
+shell-integration-features = cursor,sudo,title
+
+# Performance Optimizations
+macos-non-native-fullscreen = false
+
+# macOS Specific Settings
+macos-titlebar-style = transparent
+macos-titlebar-proxy-icon = visible
+macos-option-as-alt = true
+macos-window-shadow = true
+macos-auto-secure-input = true
+macos-secure-input-indication = true
+macos-icon = official
+# To use a custom icon, set macos-icon = "custom-style" and uncomment the following:
+# macos-icon-frame = "aluminum"
+# macos-icon-ghost-color = "#FFFFFF"
+# macos-icon-screen-color = "#000000,#FFFFFF"
+
+# Working Directory and Session Management
+working-directory = home
+
+# Advanced Terminal Features
+link-url = true
+clipboard-trim-trailing-spaces = true
+copy-on-select = false
+click-repeat-interval = 300
+focus-follows-mouse = false
+mouse-hide-while-typing = true
+mouse-shift-capture = false
+
+# Cursor and selection behavior
+cursor-style = block
+cursor-style-blink = false
