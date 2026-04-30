@@ -15,7 +15,6 @@ brew "curl"           # HTTP client
 brew "starship"       # Cross-shell prompt alternative
 brew "kubernetes-cli" # Kubernetes CLI
 brew "docker"         # Install Docker
-brew "docker-agent"   # Install Docker Agent for docker environment
 brew "awscli"         # Install AWS CLI
 
 # apps
