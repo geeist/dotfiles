@@ -1,0 +1,32 @@
+# programming languages
+brew "go"
+
+# tooling
+brew "eza"            # Modern ls replacement
+brew "bat"            # Modern cat replacement
+brew "fd"             # Modern find replacement
+brew "ripgrep"        # Modern grep replacement
+brew "fzf"            # Fuzzy finder
+brew "jq"             # JSON processor
+brew "yq"             # YAML processor
+brew "tree"           # Directory tree viewer
+brew "wget"           # Download utility
+brew "curl"           # HTTP client
+brew "starship"       # Cross-shell prompt alternative
+brew "kubernetes-cli" # Kubernetes CLI
+brew "docker"         # Install Docker
+brew "docker-agent"   # Install Docker Agent for docker environment
+brew "awscli"         # Install AWS CLI
+
+# apps
+cask "ghostty"
+cask "brave-browser"
+cask "amethyst"
+cask "zed"
+cask "claude"
+cask "claude-code@latest"
+cask "jetbrains-toolbox"
+
+# fonts
+cask "font-jetbrains-mono"
+cask "font-jetbrains-mono-nerd-font"
