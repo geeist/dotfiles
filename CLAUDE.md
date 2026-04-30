@@ -8,7 +8,8 @@ Personal macOS dotfiles for zsh, Ghostty terminal, and Homebrew. There is no bui
 
 ## Common commands
 
-- Install (or sync) everything: `./install.sh` — runnable from any cwd; idempotent, safe to re-run.
+- Install (or sync) everything: `./install.sh` — runnable from any cwd; idempotent, safe to re-run. Reports Brewfile drift (packages installed but no longer listed) without removing anything.
+- Apply Brewfile removals: `./install.sh --cleanup` — runs `brew bundle cleanup --force`, uninstalling any brew/cask not in the Brewfile.
 - Reload shell after editing `zsh/.zshrc`: `reload` (alias for `source ~/.zshrc`).
 - Add a Homebrew package: edit `homebrew/Brewfile`, then `brew bundle --file homebrew/Brewfile`.
 

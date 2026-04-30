@@ -146,6 +146,34 @@ install_oh_my_zsh() {
   fi
 }
 
+brew_sync() {
+  local file="$SCRIPT_DIR/homebrew/Brewfile"
+  brew bundle install --file "$file"
+
+  if [ "$CLEANUP" -eq 1 ]; then
+    print_status "Removing packages no longer in Brewfile..."
+    brew bundle cleanup --force --file "$file"
+    return
+  fi
+
+  local out drift
+  out="$(brew bundle cleanup --file "$file" 2>&1)" || true
+  # Keep only the "Would uninstall ..." sections; drop brew cache cleanup noise.
+  drift="$(echo "$out" | awk '
+    /^Would uninstall (formulae|casks|taps):/ { capture=1; print; next }
+    /^Would `brew cleanup`/ || /^==>/ { capture=0 }
+    capture { print }
+  ')"
+
+  if [ -z "$drift" ]; then
+    print_status "Brewfile in sync"
+  else
+    print_warning "Brewfile drift detected:"
+    echo "$drift"
+    print_warning "Run './install.sh --cleanup' to uninstall these."
+  fi
+}
+
 install_zsh_plugins() {
   local custom_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins"
 
@@ -175,11 +203,27 @@ install_zsh_plugins() {
 }
 
 main() {
+  CLEANUP=0
+  for arg in "$@"; do
+    case "$arg" in
+      --cleanup) CLEANUP=1 ;;
+      -h|--help)
+        echo "Usage: ./install.sh [--cleanup]"
+        echo "  --cleanup  Uninstall Homebrew packages no longer in the Brewfile."
+        exit 0
+        ;;
+      *)
+        print_error "Unknown argument: $arg"
+        exit 1
+        ;;
+    esac
+  done
+
   print_status "Starting installation..."
 
   preflight
 
-  brew bundle install --file "$SCRIPT_DIR/homebrew/Brewfile"
+  brew_sync
 
   install_oh_my_zsh
   install_zsh_plugins
@@ -193,4 +237,4 @@ main() {
   print_warning "Restart your terminal to apply changes."
 }
 
-main
+main "$@"
