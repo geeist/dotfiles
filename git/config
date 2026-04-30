@@ -1,0 +1,63 @@
+# Generic git config tracked by the dotfiles repo.
+# Identity lives in ~/.config/git/identity (and identity.personal) — generated
+# by install.sh, NOT tracked. Edit those files with your real name/email.
+
+[include]
+	path = ~/.config/git/identity
+
+[init]
+	defaultBranch = main
+
+[core]
+	editor = vim
+
+[credential]
+	helper = osxkeychain
+
+[pull]
+	rebase = true
+	ff = only
+[push]
+	default = simple
+	autoSetupRemote = true
+	followTags = true
+[fetch]
+	prune = true
+	pruneTags = true
+[rebase]
+	autoStash = true
+	autoSquash = true
+	updateRefs = true
+[rerere]
+	enabled = true
+	autoupdate = true
+
+[branch]
+	sort = -committerdate
+[diff]
+	algorithm = histogram
+	colorMoved = default
+	renames = copies
+[merge]
+	conflictstyle = zdiff3
+[color]
+	ui = auto
+[help]
+	autocorrect = prompt
+
+[alias]
+	st = status -sb
+	co = checkout
+	br = branch
+	cm = commit -m
+	last = log -1 HEAD
+	unstage = reset HEAD --
+	amend = commit --amend --no-edit
+	pf = push --force-with-lease
+	lg = log --graph --abbrev-commit --pretty=format:'%C(yellow)%h%C(reset) %C(blue)%an%C(reset) %s %C(green)(%ar)%C(reset)%C(red)%d%C(reset)'
+
+# Personal-identity overrides. Add more gitdir patterns here as needed.
+[includeIf "gitdir:~/Developer/personal/"]
+	path = ~/.config/git/identity.personal
+[includeIf "gitdir:~/Developer/dotfiles/"]
+	path = ~/.config/git/identity.personal
