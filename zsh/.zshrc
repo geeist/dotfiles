@@ -67,6 +67,11 @@ export PATH="$PATH:$GOBIN"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# fnm (Node version manager)
+if command -v fnm >/dev/null 2>&1; then
+  eval "$(fnm env --use-on-cd --shell zsh)"
+fi
+
 # Ghostty terminal command line tools
 export PATH="/Applications/Ghostty.app/Contents/MacOS:$PATH"
 

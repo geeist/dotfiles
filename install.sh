@@ -144,6 +144,18 @@ install_docker_plugins() {
   link_file "$prefix/opt/docker-buildx/bin/docker-buildx"   "$HOME/.docker/cli-plugins/docker-buildx"
 }
 
+install_fnm_node() {
+  if ! command -v fnm >/dev/null 2>&1; then
+    print_warning "fnm not found on PATH — skipping Node LTS install"
+    return
+  fi
+  print_status "Installing latest Node.js LTS via fnm..."
+  eval "$(fnm env --shell bash)"
+  fnm install --lts
+  fnm default lts-latest
+  print_success "Node $(fnm exec --using=lts-latest -- node --version) set as fnm default"
+}
+
 install_oh_my_zsh() {
   if [ ! -d "$HOME/.oh-my-zsh" ]; then
     print_status "Installing Oh My Zsh..."
@@ -234,6 +246,7 @@ main() {
   brew_sync
 
   install_docker_plugins
+  install_fnm_node
   install_oh_my_zsh
   install_zsh_plugins
   install_zsh_config

@@ -15,7 +15,7 @@ Personal macOS dotfiles for zsh, Ghostty terminal, and Homebrew. There is no bui
 
 ## Architecture
 
-`install.sh` is the orchestrator. After a `preflight` (macOS + `brew` checks) it runs: `brew bundle` → `install_docker_plugins` → `install_oh_my_zsh` → `install_zsh_plugins` → `install_zsh_config` → `install_aliases` → `install_git_config` → `install_git_signing` → `install_ghostty_config`. Plugins land before `.zshrc` so a shell opened mid-install never references missing plugins.
+`install.sh` is the orchestrator. After a `preflight` (macOS + `brew` checks) it runs: `brew bundle` → `install_docker_plugins` → `install_fnm_node` → `install_oh_my_zsh` → `install_zsh_plugins` → `install_zsh_config` → `install_aliases` → `install_git_config` → `install_git_signing` → `install_ghostty_config`. Plugins (and the fnm-managed Node LTS) land before `.zshrc` so a shell opened mid-install never references missing plugins or runtimes.
 
 Configs are **symlinked**, not copied — the repo is the source of truth. Editing `zsh/.zshrc` (or any other tracked config) takes effect in new shells immediately, no re-install needed:
 
