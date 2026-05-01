@@ -15,7 +15,10 @@ brew "curl"           # HTTP client
 brew "starship"       # Cross-shell prompt alternative
 brew "kubernetes-cli" # Kubernetes CLI
 brew "docker"         # Install Docker
+brew "docker-compose" # `docker compose` subcommand plugin
+brew "docker-buildx"  # `docker buildx` subcommand plugin
 brew "awscli"         # Install AWS CLI
+brew "colima"         # Alternative docker runtime
 
 # apps
 cask "ghostty"

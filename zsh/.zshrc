@@ -70,6 +70,9 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # Ghostty terminal command line tools
 export PATH="/Applications/Ghostty.app/Contents/MacOS:$PATH"
 
+# Colima docker socket (for tools that ignore docker contexts, e.g. testcontainers)
+export DOCKER_HOST="unix://$HOME/.colima/default/docker.sock"
+
 # Advanced docker functions
 dockershell() {
   local container=${1:-$(docker ps --format "{{.Names}}" | head -1)}

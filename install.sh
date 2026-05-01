@@ -136,6 +136,14 @@ install_git_signing() {
   print_warning "  https://github.com/settings/keys"
 }
 
+install_docker_plugins() {
+  print_status "Installing docker CLI plugins..."
+  local prefix
+  prefix="$(brew --prefix)"
+  link_file "$prefix/opt/docker-compose/bin/docker-compose" "$HOME/.docker/cli-plugins/docker-compose"
+  link_file "$prefix/opt/docker-buildx/bin/docker-buildx"   "$HOME/.docker/cli-plugins/docker-buildx"
+}
+
 install_oh_my_zsh() {
   if [ ! -d "$HOME/.oh-my-zsh" ]; then
     print_status "Installing Oh My Zsh..."
@@ -225,6 +233,7 @@ main() {
 
   brew_sync
 
+  install_docker_plugins
   install_oh_my_zsh
   install_zsh_plugins
   install_zsh_config
@@ -235,6 +244,10 @@ main() {
 
   print_success "All dotfiles installed successfully!"
   print_warning "Restart your terminal to apply changes."
+
+  if command -v colima >/dev/null 2>&1 && ! colima status >/dev/null 2>&1; then
+    print_warning "colima is not running — run 'colima start' to launch the docker runtime"
+  fi
 }
 
 main "$@"

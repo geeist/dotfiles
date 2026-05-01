@@ -36,13 +36,18 @@ alias dclean='docker system prune -f'
 alias dcleanall='docker system prune -a -f'
 
 # Docker Compose shortcuts
-alias dc='docker-compose'
-alias dcu='docker-compose up'
-alias dcud='docker-compose up -d'
-alias dcd='docker-compose down'
-alias dcb='docker-compose build'
-alias dcl='docker-compose logs'
-alias dcr='docker-compose restart'
+alias dc='docker compose'
+alias dcu='docker compose up'
+alias dcud='docker compose up -d'
+alias dcd='docker compose down'
+alias dcb='docker compose build'
+alias dcl='docker compose logs'
+alias dcr='docker compose restart'
+
+# Colima lifecycle
+alias cs='colima start'
+alias cstop='colima stop'
+alias cstat='colima status'
 
 # Kubernetes shortcuts
 alias k='kubectl'
