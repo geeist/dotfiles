@@ -2,29 +2,30 @@
 brew "go"
 
 # tooling
-brew "eza"                     # Modern ls replacement
-brew "bat"                     # Modern cat replacement
-brew "fd"                      # Modern find replacement
-brew "ripgrep"                 # Modern grep replacement
-brew "fzf"                     # Fuzzy finder
-brew "jq"                      # JSON processor
-brew "yq"                      # YAML processor
-brew "tree"                    # Directory tree viewer
-brew "wget"                    # Download utility
-brew "curl"                    # HTTP client
-brew "starship"                # Cross-shell prompt alternative
-brew "kubernetes-cli"          # Kubernetes CLI
-brew "docker"                  # Install Docker
-brew "docker-compose"          # `docker compose` subcommand plugin
-brew "docker-buildx"           # `docker buildx` subcommand plugin
-brew "awscli"                  # Install AWS CLI
-brew "colima"                  # Alternative docker runtime
-brew "go-task"                 # Task runner
-brew "opentofu"                # IaC Terraform alternative
-brew "hashicorp/tap/terraform" # IaC Terraform
-brew "oven-sh/bun/bun"         # Nodejs / npm alternative
-brew "fnm"                     # nvm alternative 
-brew "pnpm"                    # pnpm package manager
+brew "eza"                              # Modern ls replacement
+brew "bat"                              # Modern cat replacement
+brew "fd"                               # Modern find replacement
+brew "ripgrep"                          # Modern grep replacement
+brew "fzf"                              # Fuzzy finder
+brew "jq"                               # JSON processor
+brew "yq"                               # YAML processor
+brew "tree"                             # Directory tree viewer
+brew "wget"                             # Download utility
+brew "curl"                             # HTTP client
+brew "starship"                         # Cross-shell prompt alternative
+brew "kubernetes-cli"                   # Kubernetes CLI
+brew "docker"                           # Install Docker
+brew "docker-compose"                   # `docker compose` subcommand plugin
+brew "docker-buildx"                    # `docker buildx` subcommand plugin
+brew "awscli"                           # Install AWS CLI
+brew "colima"                           # Alternative docker runtime
+brew "go-task"                          # Task runner
+brew "opentofu"                         # IaC Terraform alternative
+brew "hashicorp/tap/terraform"          # IaC Terraform
+brew "oven-sh/bun/bun"                  # Nodejs / npm alternative
+brew "fnm"                              # nvm alternative
+brew "pnpm"                             # pnpm package manager
+brew "ScalableCapital/tap/scalable-cli" # scalable capital cli
 
 # apps
 cask "ghostty"
