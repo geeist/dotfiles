@@ -26,6 +26,12 @@ brew "oven-sh/bun/bun"                  # Nodejs / npm alternative
 brew "fnm"                              # nvm alternative
 brew "pnpm"                             # pnpm package manager
 brew "ScalableCapital/tap/scalable-cli" # scalable capital cli
+brew "ariga/tap/atlas" 			        # install atlas cli
+brew "temporal"				            # temporal state management
+brew "glab"                             # gitlab cli
+brew "pre-commit"                       # pre commit
+brew "tflint"                           # terraform linting
+brew "trivy"                            # terraform security check
 
 # apps
 cask "ghostty"
