@@ -77,6 +77,9 @@ export PATH="/Applications/Ghostty.app/Contents/MacOS:$PATH"
 
 # Colima docker socket (for tools that ignore docker contexts, e.g. testcontainers)
 export DOCKER_HOST="unix://$HOME/.colima/default/docker.sock"
+# Path testcontainers bind-mounts into the Ryuk reaper container; Colima's host
+# socket isn't at /var/run/docker.sock, but Ryuk expects that canonical path inside.
+export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE="/var/run/docker.sock"
 
 # Advanced docker functions
 dockershell() {
