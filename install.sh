@@ -144,6 +144,36 @@ install_docker_plugins() {
   link_file "$prefix/opt/docker-buildx/bin/docker-buildx"   "$HOME/.docker/cli-plugins/docker-buildx"
 }
 
+COLIMA_MEMORY=16
+COLIMA_CPU=8
+
+install_colima_resources() {
+  command -v colima >/dev/null 2>&1 || return 0
+  local cfg="$HOME/.colima/default/colima.yaml"
+
+  if [ ! -f "$cfg" ]; then
+    print_status "Starting colima with ${COLIMA_CPU} CPU / ${COLIMA_MEMORY}GB memory (first-time init)..."
+    colima start --cpu "$COLIMA_CPU" --memory "$COLIMA_MEMORY"
+    return
+  fi
+
+  local cur_mem cur_cpu
+  cur_mem="$(awk '/^memory:/ {print $2}' "$cfg")"
+  cur_cpu="$(awk '/^cpu:/ {print $2}' "$cfg")"
+  if [ "$cur_mem" = "$COLIMA_MEMORY" ] && [ "$cur_cpu" = "$COLIMA_CPU" ]; then
+    print_status "Colima configured for ${COLIMA_CPU} CPU / ${COLIMA_MEMORY}GB memory"
+    return
+  fi
+
+  if colima status >/dev/null 2>&1; then
+    print_warning "Colima running with ${cur_cpu} CPU / ${cur_mem}GB — restart to apply ${COLIMA_CPU} CPU / ${COLIMA_MEMORY}GB:"
+    print_warning "  colima stop && colima start --cpu $COLIMA_CPU --memory $COLIMA_MEMORY"
+  else
+    print_status "Updating colima resources: ${cur_cpu} CPU / ${cur_mem}GB → ${COLIMA_CPU} CPU / ${COLIMA_MEMORY}GB"
+    colima start --cpu "$COLIMA_CPU" --memory "$COLIMA_MEMORY"
+  fi
+}
+
 install_fnm_node() {
   if ! command -v fnm >/dev/null 2>&1; then
     print_warning "fnm not found on PATH — skipping Node LTS install"
@@ -246,6 +276,7 @@ main() {
   brew_sync
 
   install_docker_plugins
+  install_colima_resources
   install_fnm_node
   install_oh_my_zsh
   install_zsh_plugins
@@ -257,10 +288,6 @@ main() {
 
   print_success "All dotfiles installed successfully!"
   print_warning "Restart your terminal to apply changes."
-
-  if command -v colima >/dev/null 2>&1 && ! colima status >/dev/null 2>&1; then
-    print_warning "colima is not running — run 'colima start' to launch the docker runtime"
-  fi
 }
 
 main "$@"
